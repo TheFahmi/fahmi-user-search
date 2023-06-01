@@ -23,26 +23,28 @@ const UserSearch: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  const handleUserClick = (username: string) => {
+  const handleUserClick = async (username: string) => {
+    setIsLoading(true);
     if (selectedUser === username && isOpen) {
       setIsOpen(false);
+      setIsLoading(false);
     } else {
-      dispatch<any>(getUser(username));
+      await dispatch<any>(getUser(username));
       setSelectedUser(username);
+      setIsLoading(false);
       setIsOpen(true);
     }
   };
-  
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     if (searchQuery.trim() === "") {
       setError("Search query cannot be empty");
     } else {
       setError("");
-      setIsLoading(true);
       await dispatch<any>(searchUsers(searchQuery));
-      console.log(userList)
+      console.log(userList);
       setIsLoading(false);
     }
   };
@@ -64,8 +66,8 @@ const UserSearch: React.FC = () => {
         </form>
         {error && <div className="alert alert-danger">{error}</div>}
         <Accordion>
-  {userList.map((user) => (
-    <AccordionItem key={user.id}>
+          {userList.map((user) => (
+            <AccordionItem key={user.id}>
               <AccordionItemHeading>
                 <AccordionItemButton>
                   <div
