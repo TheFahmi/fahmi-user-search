@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/fahmi-atask/static/css/main.fe10b8fc.css",
+    "main.js": "/fahmi-atask/static/js/main.2f93799c.js",
+    "index.html": "/fahmi-atask/index.html",
+    "main.fe10b8fc.css.map": "/fahmi-atask/static/css/main.fe10b8fc.css.map",
+    "main.2f93799c.js.map": "/fahmi-atask/static/js/main.2f93799c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fe10b8fc.css",
+    "static/js/main.2f93799c.js"
+  ]
+}
