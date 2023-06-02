@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fahmi-atask/static/css/main.1f01bdc6.css",
-    "main.js": "/fahmi-atask/static/js/main.cfe9399c.js",
+    "main.css": "/fahmi-atask/static/css/main.ac24aba1.css",
+    "main.js": "/fahmi-atask/static/js/main.8a947ec8.js",
     "index.html": "/fahmi-atask/index.html",
-    "main.1f01bdc6.css.map": "/fahmi-atask/static/css/main.1f01bdc6.css.map",
-    "main.cfe9399c.js.map": "/fahmi-atask/static/js/main.cfe9399c.js.map"
+    "main.ac24aba1.css.map": "/fahmi-atask/static/css/main.ac24aba1.css.map",
+    "main.8a947ec8.js.map": "/fahmi-atask/static/js/main.8a947ec8.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f01bdc6.css",
-    "static/js/main.cfe9399c.js"
+    "static/css/main.ac24aba1.css",
+    "static/js/main.8a947ec8.js"
   ]
 }
