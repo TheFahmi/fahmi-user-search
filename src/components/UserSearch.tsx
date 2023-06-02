@@ -24,15 +24,15 @@ const UserSearch: React.FC = () => {
   const [error, setError] = useState<string>("");
 
   const handleUserClick = async (username: string) => {
-    setIsLoading(true);
     if (selectedUser === username && isOpen) {
       setIsOpen(false);
       setIsLoading(false);
     } else {
-      await dispatch<any>(getUser(username));
       setSelectedUser(username);
-      setIsLoading(false);
+      setIsLoading(true);
       setIsOpen(true);
+      await dispatch<any>(getUser(username));
+      setIsLoading(false);
     }
   };
 
@@ -50,8 +50,8 @@ const UserSearch: React.FC = () => {
 
   return (
     <div className="container">
-      <div className="shadow bg-light rounded">
-        <div className="p-4 max-w-lg mx-auto bg-light sticky-top">
+      <div className="shadow bg-white rounded">
+        <div className="p-4 max-w-lg mx-auto bg-white sticky-top">
           <form onSubmit={handleSearch} className="d-flex">
             <input
               type="text"
@@ -68,83 +68,100 @@ const UserSearch: React.FC = () => {
           {error && <div className="alert alert-danger">{error}</div>}
         </div>
 
-        <div className="pb-4 px-4 max-w-lg mx-auto bg-light">
-          <Accordion>
-            {userList.map((user) => (
-              <AccordionItem key={user.id}>
-                <AccordionItemHeading>
-                  <AccordionItemButton>
-                    <div
-                      data-testid="user-click"
-                      onClick={() => handleUserClick(user.login)}
-                      className={`p-2 my-2 rounded d-flex align-items-center justify-content-between ${
-                        selectedUser === user.login ? "bg-primary text-white" : ""
-                      }`}
-                    >
-                      <div data-testid="user-login">{user.login}</div>
-                      {isOpen && selectedUser === user.login ? (
-                        <FaChevronUp />
-                      ) : (
-                        <FaChevronDown />
-                      )}
-                    </div>
-                  </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel>
-                  {selectedUser === user.login && userDetails && isOpen ? (
-                    <div
-                      className={`bg-light rounded ${
-                        isLoading ? "skeleton" : ""
-                      }`}
-                      style={{
-                        maxHeight: isLoading ? "120px" : "none",
-                        transition: "max-height 0.3s ease",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {isLoading ? (
-                        <div>
-                          <div className="skeleton-row" />
-                          <div className="skeleton-row" />
-                          <div className="skeleton-row" />
-                        </div>
-                      ) : userDetails.length > 0 ? (
-                        userDetails.map((repo: any) => (
-                          <div
-                            key={repo.id}
-                            className="d-flex rounded align-items-center bg-white p-2 mb-2 justify-content-between"
-                          >
-                            <div className="w-75">
-                              <h4
-                                className="text-primary"
-                                data-testid="repo-name"
+        <div className="pb-4 px-4 max-w-lg mx-auto bg-white">
+          {userList.length > 0 ? (
+            <Accordion allowMultipleExpanded={true}>
+              {userList.map((user) => (
+                <AccordionItem key={user.id}>
+                  <AccordionItemHeading>
+                    <AccordionItemButton>
+                      <div
+                        data-testid="user-click"
+                        onClick={() => handleUserClick(user.login)}
+                        className={`p-2 my-2 rounded d-flex align-items-center justify-content-between ${
+                          selectedUser === user.login
+                            ? "bg-primary text-white"
+                            : ""
+                        }`}
+                      >
+                        <div data-testid="user-login">{user.login}</div>
+                        {isOpen && selectedUser === user.login ? (
+                          <FaChevronUp />
+                        ) : (
+                          <FaChevronDown />
+                        )}
+                      </div>
+                    </AccordionItemButton>
+                  </AccordionItemHeading>
+                  <AccordionItemPanel>
+                    {selectedUser === user.login && userDetails && isOpen ? (
+                      <div
+                        className={`bg-white rounded ${
+                          isLoading ? "skeleton" : ""
+                        }`}
+                        style={{
+                          maxHeight: isLoading ? "120px" : "none",
+                          transition: "max-height 0.3s ease",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {isLoading ? (
+                          <div className="d-flex align-items-center justify-content-between">
+                            <div className="w-100">
+                              <div className="skeleton-row skeleton-name" />
+                              <div className="skeleton-row skeleton-description" />
+                            </div>
+                            <div className="skeleton-row skeleton-star" />
+                          </div>
+                        ) : userDetails.length > 0 ? (
+                          userDetails.map((repo: any) => (
+                            <div
+                              key={repo.id}
+                              className="d-flex rounded align-items-center bg-light p-2 mb-2 justify-content-between"
+                            >
+                              <div className="w-75">
+                                <h4
+                                  className="text-primary"
+                                  data-testid="repo-name"
+                                >
+                                  {repo.name}
+                                </h4>
+                                <p data-testid="repo-description">
+                                  {repo.description}
+                                </p>
+                              </div>
+                              <p
+                                className="ml-2 d-flex align-items-center gap-2"
+                                data-testid="stargazers"
                               >
-                                {repo.name}
-                              </h4>
-                              <p data-testid="repo-description">
-                                {repo.description}
+                                <FaStar className="text-warning" />{" "}
+                                {repo.stargazers_count}
                               </p>
                             </div>
-                            <p
-                              className="ml-2 d-flex align-items-center gap-2"
-                              data-testid="stargazers"
-                            >
-                              <FaStar className="text-warning" />{" "}
-                              {repo.stargazers_count}
-                            </p>
+                          ))
+                        ) : (
+                          <div className="p-2 bg-white rounded text-center">
+                            No user details found.
                           </div>
-                        ))
-                      ) : (
-                        <div className="p-2 bg-light rounded text-center">
-                          No user details found.
-                        </div>
-                      )}
-                    </div>
-                  ) : null}
-                </AccordionItemPanel>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                        )}
+                      </div>
+                    ) : null}
+                  </AccordionItemPanel>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          ) : searchQuery && isLoading ? (
+            <div className="text-center p-4">
+              {isLoading ? (
+                <div>
+                  <div className="skeleton-row skeleton-title" />
+                  <div className="skeleton-row skeleton-title" />
+                </div>
+              ) : (
+                "No users found."
+              )}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
