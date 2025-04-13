@@ -29,7 +29,7 @@
     "url": "^0.11.4",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://thefahmi.github.io/fahmi-user-search",
+  "homepage": ".",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
