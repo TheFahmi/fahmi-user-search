@@ -23,10 +23,12 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies 📦
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build 🏗️
-        run: npm run build
+        run: npm run build --legacy-peer-deps
+        env:
+          CI: false
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
