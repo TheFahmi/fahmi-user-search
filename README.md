@@ -9,7 +9,7 @@
 
 *A modern GitHub user search application with a stunning Glass UI design and seamless dark mode support.*
 
-[Features](#features) • [Demo](#demo) • [Technologies](#technologies) • [Installation](#installation) • [Usage](#usage) • [Screenshots](#screenshots)
+[Features](#features) • [Demo](#demo) • [Technologies](#technologies) • [Installation](#installation) • [Usage](#usage) • [Deployment](#deployment)
 
 </div>
 
@@ -66,23 +66,33 @@ The application will be available at [http://localhost:3000](http://localhost:30
    - Last update date
 5. **Toggle Dark Mode**: Use the button in the bottom right corner to switch between light and dark themes
 
-## 📱 Screenshots
+## 🚀 Deployment
 
-<div align="center">
+This project is automatically deployed to GitHub Pages using GitHub Actions. Every push to the `master` branch triggers a new deployment.
 
-### Light Mode
+### Manual Deployment
 
-<img src="screenshots/light-mode.png" alt="Light Mode Screenshot" width="80%" />
+You can also manually deploy the application to GitHub Pages using the following command:
 
-### Dark Mode
+```bash
+npm run deploy
+```
 
-<img src="screenshots/dark-mode.png" alt="Dark Mode Screenshot" width="80%" />
+This will build the application and push it to the `gh-pages` branch, which is configured to serve the application.
 
-### Mobile View
+### Configuration
 
-<img src="screenshots/mobile-view.png" alt="Mobile View Screenshot" width="40%" />
+The deployment is configured in the `package.json` file with the following settings:
 
-</div>
+```json
+{
+  "homepage": ".",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
+```
 
 ## 🌟 Demo
 
