@@ -1,33 +1,35 @@
-# User Search App
+# GitHub User Search
 
-The User Search App is a web application that allows users to search for other users and view their details, including repositories and star counts. It is built with React and Redux.
+A modern GitHub user search application with a sleek Glass UI design. This application allows users to search for GitHub users and view their repositories with detailed information.
 
 ## Features
 
-- Search for users by their username
-- Display search results in an accordion format
-- Expand or collapse user details to view repositories and star counts
-- Loading skeleton effect while user details are being fetched
+- Search for GitHub users by username
+- View user profiles with repository details
+- Elegant Glass UI design with animations
+- Dark mode support
+- Responsive layout for all devices
+- Loading states with glass-style skeletons
 
 ## Technologies Used
 
-- React
-- Redux
-- React Redux
-- react-accessible-accordion
-- Bootstrap
-- CSS
+- React 18
+- TypeScript
+- TanStack React Query
+- Tailwind CSS
+- Framer Motion
+- Axios
 
 ## Installation
 
-To run the User Search App locally, follow these steps:
+To run the GitHub User Search application locally, follow these steps:
 
 1. Clone the repository:
 
-`git clone https://github.com/TheFahmi/fahmi-atask.git`
+`git clone https://github.com/TheFahmi/fahmi-user-search.git`
 
 2. Navigate to the project directory:
-`cd fahmi-atask`
+`cd fahmi-user-search`
 
 3. Install the dependencies:
 `npm install`
@@ -39,13 +41,13 @@ To run the User Search App locally, follow these steps:
 
 ## Usage
 
-1. Enter a username in the search input field.
-2. Click the "Search" button.
-3. The search results will be displayed in an accordion format.
-4. Click on a user's name to expand their details.
-5. The user's repositories and star counts will be shown.
-6. If the user details are still loading, a skeleton loading effect will be displayed.
-7. You can search for other users by entering a different username in the search input field.
+1. Enter a GitHub username in the search input field.
+2. Click the "Search" button or press Enter.
+3. The search results will be displayed with a modern glass UI design.
+4. Click on a user card to expand and view their repositories.
+5. Each repository shows detailed information including stars, forks, and language.
+6. Toggle between light and dark mode using the button in the bottom right corner.
+7. Enjoy the smooth animations and glass effects throughout the application.
 
 ## Contributing
 
